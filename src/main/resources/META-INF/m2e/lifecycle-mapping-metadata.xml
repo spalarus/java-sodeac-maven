@@ -1,0 +1,17 @@
+<lifecycleMappingMetadata>
+    <pluginExecutions>
+        <pluginExecution>
+            <pluginExecutionFilter>
+                <goals>
+                	<goal>generate-service-descriptor</goal>
+                    <goal>generate-branchnode-to-object-wrapper</goal>
+                </goals>
+            </pluginExecutionFilter>
+            <action>
+                <execute>
+                    <ignore/>
+                </execute>
+            </action>
+        </pluginExecution>
+    </pluginExecutions>
+</lifecycleMappingMetadata>
