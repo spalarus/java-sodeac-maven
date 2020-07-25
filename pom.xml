@@ -7,6 +7,9 @@
   <version>0.0.1</version>
   <packaging>maven-plugin</packaging>
   
+  <name>Sodeac Maven Plugin</name>
+  <description>Maven Codegenerator</description>
+  
   	<prerequisites>
 		<maven>3.5.0</maven>
 	</prerequisites>
