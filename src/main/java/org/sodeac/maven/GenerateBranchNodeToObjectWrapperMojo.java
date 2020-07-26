@@ -41,6 +41,9 @@ import spoon.reflect.declaration.CtType;
 import spoon.reflect.reference.CtPackageReference;
 import spoon.reflect.reference.CtTypeReference;
 
+
+// mvn org.sodeac:org.sodeac.mvn.plugin:generate-branchnode-to-object-wrapper
+
 @Mojo(name = "generate-branchnode-to-object-wrapper", defaultPhase = LifecyclePhase.GENERATE_SOURCES)
 public class GenerateBranchNodeToObjectWrapperMojo extends AbstractMojo
 {
@@ -159,35 +162,36 @@ public class GenerateBranchNodeToObjectWrapperMojo extends AbstractMojo
 					classBuilder.append("\t}\n");
 					classBuilder.append("\t\n");
 					
-					for(CtMethod method : (Set<CtMethod>)javaClass.getMethods())
+				}
+				
+				for(CtMethod method : (Set<CtMethod>)javaClass.getMethods())
+				{
+					if(!method.isStatic())
 					{
-						if(!method.isStatic())
-						{
-							continue;
-						}
-						if(!method.isPublic())
-						{
-							continue;
-						}
-						boolean isBowMethod = false;
-						for(CtAnnotation<? extends Annotation> annotation : method.getAnnotations())
-						{
-							if("org.sodeac.common.annotation.BowMethod".equals(annotation.getAnnotationType().getQualifiedName()))
-							{
-								isBowMethod = true;
-								
-								break;
-							}
-						}
-						
-						if(! isBowMethod)
-						{
-							continue;
-						}
-						
-						classBuilder.append(generateBowMethod(javaClass, method, "\t", true));
-						
+						continue;
 					}
+					if(!(method.isPublic() || method.isProtected()))
+					{
+						continue;
+					}
+					boolean isBowMethod = false;
+					for(CtAnnotation<? extends Annotation> annotation : method.getAnnotations())
+					{
+						if("org.sodeac.common.annotation.BowMethod".equals(annotation.getAnnotationType().getQualifiedName()))
+						{
+							isBowMethod = true;
+							
+							break;
+						}
+					}
+					
+					if(! isBowMethod)
+					{
+						continue;
+					}
+					
+					classBuilder.append(generateBowMethod(javaClass, method, "\t", true));
+					
 				}
 				
 				classBuilder.append("}\n");
@@ -596,7 +600,7 @@ public class GenerateBranchNodeToObjectWrapperMojo extends AbstractMojo
 					{
 						continue;
 					}
-					if(!method.isPublic())
+					if(!(method.isPublic() || method.isProtected()))
 					{
 						continue;
 					}
