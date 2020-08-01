@@ -1,4 +1,5 @@
 /*******************************************************************************
+
  * Copyright (c) 2020 Sebastian Palarus
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v2.0
@@ -556,7 +557,7 @@ public class GenerateBranchNodeToObjectWrapperMojo extends AbstractMojo
 						
 						classBuilder.append("\t\n");
 						
-						classBuilder.append("\tpublic java.util.List<"+ getBOWName(typeQualifiedName) + "<" + getBOWName(javaClass.getQualifiedName()) + "<P>>> getUnmodifiable" 
+						classBuilder.append("\tpublic java.util.List<"+ getBOWName(typeQualifiedName) + "<" + getBOWName(javaClass.getQualifiedName()) + "<P>>> getUnmodifiableListOf" 
 								+ ( field.getSimpleName().length() == 1 ? 
 										field.getSimpleName().toUpperCase() : 
 										field.getSimpleName().substring(0, 1).toUpperCase()  + field.getSimpleName().substring(1)
@@ -568,7 +569,7 @@ public class GenerateBranchNodeToObjectWrapperMojo extends AbstractMojo
 						
 						classBuilder.append("\t\n");
 						
-						classBuilder.append("\tpublic java.util.stream.Stream<"+ getBOWName(typeQualifiedName) + "<" + getBOWName(javaClass.getQualifiedName()) + "<P>>> getStreamed" 
+						classBuilder.append("\tpublic java.util.stream.Stream<"+ getBOWName(typeQualifiedName) + "<" + getBOWName(javaClass.getQualifiedName()) + "<P>>> getStreamOf" 
 								+ ( field.getSimpleName().length() == 1 ? 
 										field.getSimpleName().toUpperCase() : 
 										field.getSimpleName().substring(0, 1).toUpperCase()  + field.getSimpleName().substring(1)

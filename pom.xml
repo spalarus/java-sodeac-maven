@@ -4,7 +4,7 @@
 
   <groupId>org.sodeac</groupId>
   <artifactId>org.sodeac.mvn.plugin</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
   <packaging>maven-plugin</packaging>
   
   <name>Sodeac Maven Plugin</name>
