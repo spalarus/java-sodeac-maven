@@ -1005,8 +1005,20 @@ public class GenerateBranchNodeToObjectWrapperMojo extends AbstractMojo
 				}
 				else
 				{
-					parameterExpressions.add(parameter.getType().toString() + " " + parameterName);
+					if(parameter.isVarArgs() && parameter.getType().toString().endsWith("[]"))
+					{
+						parameterExpressions.add(parameter.getType().toString().substring(0, parameter.getType().toString().length() - 2) + "... " + parameterName);
+					}
+					else
+					{
+						parameterExpressions.add(parameter.getType().toString() + " " + parameterName);
+					}
 					invokeParameterNames.add(parameterName);
+				}
+				
+				if(parameter.getType().toString().equals("java.lang.String[]"))
+				{
+					System.out.println(" --- " + parameter.getType().toString() + " --- " + parameter.toString() +" - " + parameter.isVarArgs());
 				}
 			}
 			finally 
