@@ -659,6 +659,22 @@ public class GenerateBranchNodeToObjectWrapperMojo extends AbstractMojo
 				
 				classBuilder.append("\t\n");
 				
+				classBuilder.append("\tpublic " + generatedClassName + "<P> copyFrom(" + generatedClassName + "<?> bow)\n");
+				classBuilder.append("\t{\n");
+				classBuilder.append("\t\tsuper.getWrappedBranchNode().copyFrom(bow.getWrappedBranchNode());\n");
+				classBuilder.append("\t\treturn this;\n");
+				classBuilder.append("\t}\n");
+				
+				classBuilder.append("\t\n");
+				
+				/*classBuilder.append("\tpublic " + generatedClassName + "<P> applyToConsumer(java.util.function.Consumer<" + generatedClassName + "<?>> consumer)\n");
+				classBuilder.append("\t{\n");
+				classBuilder.append("\t\tconsumer.accept(this);\n");
+				classBuilder.append("\t\treturn this;\n");
+				classBuilder.append("\t}\n");
+				
+				classBuilder.append("\t\n");*/
+				
 				classBuilder.append("\tprivate static class FieldFactory_" + generatedPackageName.replace('.', '_') + "__" + generatedClassName + " \n");
 				classBuilder.append("\t{\n");
 				classBuilder.append("\t\tprivate FieldFactory_" + generatedPackageName.replace('.', '_') + "__" + generatedClassName + "(org.sodeac.common.typedtree.BranchNodeMetaModel model)\n");
