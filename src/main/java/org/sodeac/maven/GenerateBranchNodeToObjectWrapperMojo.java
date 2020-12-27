@@ -511,7 +511,12 @@ public class GenerateBranchNodeToObjectWrapperMojo extends AbstractMojo
 								  ) + 
 								"()\n");
 						classBuilder.append("\t{\n");
-						classBuilder.append("\t\treturn (" + getBOWName(typeQualifiedName) + ") super.getBranchNode(this._nodeField_" + field.getSimpleName() + ").getBow();\n");
+						classBuilder.append("\t\torg.sodeac.common.typedtree.BranchNode wrapped = super.getBranchNode(this._nodeField_" + field.getSimpleName() + ");\n");
+						classBuilder.append("\t\tif(wrapped == null)\n");
+						classBuilder.append("\t\t{\n");
+						classBuilder.append("\t\t\treturn null;\n");
+						classBuilder.append("\t\t}\n");
+						classBuilder.append("\t\treturn (" + getBOWName(typeQualifiedName) + ") wrapped.getBow();\n");
 						classBuilder.append("\t}\n");
 						
 						classBuilder.append("\t\n");
